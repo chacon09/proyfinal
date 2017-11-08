@@ -1,0 +1,26 @@
+{% if user.is_authenticated %}
+
+
+<html>
+    <head>
+        <title>Django Girls blog</title>
+    </head>
+    <table>
+      <thead>
+    <tr>
+      <th>nombre</th>
+      <th>descripcion</th>
+    </tr>
+
+       {% for deporte in pub %}
+       <tr>
+         <th>{{deporte.pk}}</th>
+         <th>{{deporte.nombre}}</th>
+         <th>{{deporte.descripcion}}</th>
+         <th><a href="{% url 'borrar_deporte' pk=deporte.pk  %}">borrar</a></th>
+         <th><a href="{% url 'editar_deporte' pk=deporte.pk  %}">editar</a></th>
+       </tr>
+       {% endfor %}
+     </thead>
+   </table>
+  {% endif %}

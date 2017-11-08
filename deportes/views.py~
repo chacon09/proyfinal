@@ -1,0 +1,18 @@
+from django.shortcuts import render
+from django.contrib import messages
+from .forms import DeportistaForm
+from deportes.models import Deportista, Participacion
+
+def pelicula_nueva(request):
+    if request.method == "POST":
+        formulario = DeportistaForm(request.POST)
+        if formulario.is_valid():
+            deportista = Deportista.objects.create(nombre=formulario.cleaned_data['nombre'], edad = formulario.cleaned_data['edad'])
+            for deporte_id in request.POST.getlist('deporte'):
+                participacion = Participacion(deporte_id=deporte_id, deportista_id = deportista.id)
+                participacion.save()
+            messages.add_message(request, messages.SUCCESS, 'Participacion Guardada Exitosamente')
+    else:
+        formulario = DeportistaForm()
+    return render(request, 'peliculas/pelicula_editar.html', {'formulario': formulario})
+# Create your views here.

@@ -1,0 +1,30 @@
+{% if user.is_authenticated %}
+{% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <h1><a href={% url 'pelicula_nueva' %}>Crear deporte</a></h1>
+
+
+<html>
+    <head>
+        <title>Django Girls blog</title>
+    </head>
+    <table>
+      <thead>
+    <tr>
+      <th>nombre</th>
+      <th>edad</th>
+      <th>nacionalidad</th>
+    </tr>
+
+       {% for deportista in pub %}
+       <tr>
+         <th>{{deportista.pk}}</th>
+         <th>{{deportista.nombre}}</th>
+         <th>{{deportista.nacionalidad}}</th>
+         <th><a href="{% url 'editar_deportista' pk=deportista.pk  %}">Editar</a></th>
+         <th><a href="{% url 'borrar_deportista' pk=deportista.pk  %}">borrar</a></th>
+       </tr>
+       {% endfor %}
+     </thead>
+   </table>
+  {% endif %}

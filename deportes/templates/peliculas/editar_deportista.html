@@ -1,0 +1,12 @@
+{% extends 'peliculas/base.html' %}
+{% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% block content %}
+
+<form method="POST" class="post_forms">{% csrf_token %}
+  {{form.as_p}}
+  <button type="submit">Actualizar</button>
+</forms>
+
+
+{% endblock%}

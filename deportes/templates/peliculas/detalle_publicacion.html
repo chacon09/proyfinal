@@ -1,0 +1,12 @@
+{% extends 'peliculas/base.html' %}
+  {% block content %}
+
+    <a class="btn btn-default" href="{% url 'listar_pub' pk=pub.pk %}">Publish</a>
+
+
+      <a class="btn btn-default" href="{% url 'deporte_e' pk=pub.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+        <h1>{{ pub.nombre }}</h1>
+        <p>{{ pub.nacionalidad|linebreaksbr }}</p>
+    </div>
+      {% endblock %}
